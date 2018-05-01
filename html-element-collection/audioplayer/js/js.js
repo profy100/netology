@@ -12,12 +12,10 @@ const pause = document.getElementsByClassName('fa-pause')[0];
 
 function playMusic(){	
 	if(audioPlayer.paused === false){
-		pause.style.display = 'none';
-		play.style.display = 'block';
+		mediaPlayer.classList.toggle('play');
 		audioPlayer.pause();
 	}else if(audioPlayer.paused === true){
-		play.style.display = 'none';
-		pause.style.display = 'block';
+		mediaPlayer.classList.toggle('play');
 		audioPlayer.play();
 	}
 }
@@ -28,8 +26,7 @@ const buttonStop = document.getElementsByClassName('stop')[0];
 
 function stopMusic(){
 	audioPlayer.currentTime = 0;
-	pause.style.display = 'none';
-	play.style.display = 'block';
+	mediaPlayer.classList.remove('play');
 	audioPlayer.pause();
 }
 buttonStop.onclick = stopMusic;
@@ -53,7 +50,10 @@ function getNextSong(){
 	let nameMusic = arrayMusic[index].replace(/^mp3\//ig, "");
 	nameMusic = nameMusic.replace(/\.mp3$/ig, '');
 	document.getElementsByClassName('title')[0].title = nameMusic;
-	playMusic();
+	if(mediaPlayer.classList.contains('play')){
+		audioPlayer.play();
+	}
+
 }
 
 function getBackSong(){
@@ -63,10 +63,12 @@ function getBackSong(){
 	}
 
 	audioPlayer.src = arrayMusic[index];
-	let nameMusic = arrayMusic[index].replace(/^mp3\//ig, "");
+	let nameMusic = arrayMusic[index].replace(/^mp3\//ig, '');
 	nameMusic = nameMusic.replace(/\.mp3$/ig, '');
 	document.getElementsByClassName('title')[0].title = nameMusic;
-	playMusic();
+	if(mediaPlayer.classList.contains('play')){
+		audioPlayer.play();
+	}
 }
 buttonNext.onclick = getNextSong;
 buttonBack.onclick = getBackSong;
