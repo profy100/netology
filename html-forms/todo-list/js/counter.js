@@ -12,7 +12,6 @@ function testListDeals(){
 	for(let list = 0; list < listBlock.length; list++){
 		if(listBlock[list].querySelector('input').checked === true){
 			counter++
-			console.log(counter);
 		}
 	}
 
