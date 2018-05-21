@@ -1,7 +1,7 @@
 'use strict'
 
 const listBlock = document.querySelectorAll('.list-block ul li');
-
+console.log(listBlock);
 for(const list of listBlock){
 	list.addEventListener('click', testListDeals);
 }
