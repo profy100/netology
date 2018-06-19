@@ -1,15 +1,16 @@
 'use strict';
 
 const sliderButton = document.getElementsByClassName('slider-nav')[0];
-console.log(sliderButton);
+
 const buttons = Array.from(sliderButton.children);
-console.log(buttons);
+
 const slider = document.getElementsByClassName('slides')[0];
-console.log(slider);
+
 
 slider.children[0].classList.add('slide-current');
 
 let activeElement = document.querySelector('.slide-current');
+console.log(activeElement);
 
 for(let item of buttons){
 	item.addEventListener('click', chooseImage);
@@ -17,9 +18,12 @@ for(let item of buttons){
 
 function chooseImage(event){
 	event.preventDefault();
+
+	console.log(event.target.classList.contains('disabled'));
+	console.log(activeElement.lastElementSibling);
+	console.log(activeElement);
 	activeElement.classList.remove('slide-current');
 	console.log(event.target.dataset.action);
-	console.log(activeElement.lastElementSibling);
 	switch(event.target.dataset.action){
 		case 'prev':
 			activeElement = activeElement.previousElementSibling;
@@ -30,14 +34,15 @@ function chooseImage(event){
 			break;
 
 		case 'first':
-			activeElement = activeElement.firstElementSibling;
+			activeElement = slider.firstElementChild;
 			break;
 
 		case 'last':
-			activeElement = activeElement.lastElementSibling;
+			activeElement = slider.lastElementChild;
 			break;	
 	}
 	activeElement.classList.add('slide-current');
+
 	updateButtons();
 }
 

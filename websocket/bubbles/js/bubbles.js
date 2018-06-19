@@ -1,7 +1,7 @@
 'use strict';
 
 function showBubbles(target) {
-  console.log(target);
+
   if (!target || !(target instanceof WebSocket)) {
     return;
   }
@@ -10,7 +10,6 @@ function showBubbles(target) {
 
   target.addEventListener('message', event => {
     const data = JSON.parse(event.data);
-    console.log(data);
     if (data instanceof Array) {
       points = data;
     }

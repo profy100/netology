@@ -1,9 +1,6 @@
 'use strict';
 
 function toggleMenu(event) {
-  if(!(event.target.parentElement === event.currentTarget)){
-    return;
-  }
   if (this.classList.contains('show')) {
     this.classList.remove('show');
     this.classList.add('hide');
@@ -15,10 +12,7 @@ function toggleMenu(event) {
 
 function openLink(event) {
   event.preventDefault();
-
-  if(event.target === event.currentTarget){
-    return;
-  }
+  event.stopPropagation();
 }
 
 function init(node) {
